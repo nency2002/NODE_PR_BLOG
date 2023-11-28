@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<style>
+    .padding{
+        margin-bottom: 25px;
+    }
+</style>
+<body>
+    <%- include("nav") %>
+    <div class="form_container">
+        <form action="/user/login" method="post">
+            <label for="">Email :</label>
+            <input type="email" id="email" name="email" required />
+            <label for="">Password :</label>
+            <input type="password" id="password" name="password" class="padding" required />
+           <button type="submit">Login </button>
+        </form>
+    </div>
+</body>
+</html>

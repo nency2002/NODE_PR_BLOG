@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog</title>
+  <style>
+    #parent-box .div {
+      box-shadow: 5px 10px 18px rgba(173, 171, 171, 0.866);
+      margin: 20px;
+      background-size: cover;
+      background-position: center;
+      padding: 20px;
+      border-radius: 20px;
+
+    }
+
+    #parent-box {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 20px;
+    }
+
+    .img {
+      max-width: 220px;
+      border-radius: 5px;
+    }
+
+    .title {
+      font-weight: bold;
+      font-size: 20px;
+      padding: 10PX;
+      margin: 0;
+      color: white;
+      text-align: center;
+    }
+
+    button {
+      padding: 10px 20px;
+      width: 100%;
+      margin: 5px 0px;
+      border-radius: 5px;
+      outline: none;
+      border: none;
+      font-size: 18px;
+      background-color: transparent;
+      border: 1px solid white;
+      color: white
+    }
+  </style>
+</head>
+
+<body>
+  <!-- home pages -->
+  <%- include("nav") %>
+    <div id="parent-box"></div>
+</body>
+<script>
+  fetch("/blog/blogs")
+    .then((res) => res.json())
+    .then((data) => {
+      data.map((ele) => {
+        let img = document.createElement("img");
+        img.src = ele.image;
+        img.setAttribute("class", "img");
+        img.addEventListener("click", () => {
+          window.location.href = `/blog/singleblog/${ele._id}`;
+        });
+
+        let title = document.createElement("p");
+        title.innerHTML = ele.title;
+        title.setAttribute("class", "title");
+
+        let deletes = document.createElement("button");
+        deletes.innerHTML = "Delete";
+        deletes.addEventListener("click", () => {
+          deleteblog(ele._id);
+
+        })
+
+        let edits = document.createElement("button");
+        edits.innerHTML = "Edit";
+        edits.addEventListener("click", (e) => {
+          e.preventDefault();
+          window.location.href = `/blog/updateblog/${ele._id}`;
+        })
+
+
+        let div = document.createElement("div");
+
+        div.append(img, title, deletes, edits);
+        div.setAttribute("class", "div");
+        document.getElementById("parent-box").append(div);
+
+      });
+    });
+
+  const deleteblog = (id) => {
+    window.location.reload();
+    fetch(`http://localhost:8000/blog/delete/${id}`, {
+      method: "DELETE"
+
+    })
+  }
+</script>
+
+</html>
