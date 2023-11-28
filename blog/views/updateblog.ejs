@@ -5,11 +5,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog-UpdateBlogs</title>
+    <style>
+        #blogForm {
+            box-shadow: 5px 10px 18px rgba(173, 171, 171, 0.866);
+            width: 350px;
+            padding: 30px;
+            margin: auto;
+            background-image: url("https://img.freepik.com/free-photo/digital-painting-mountain-with-colorful-tree-foreground_1340-25699.jpg?t=st=1701097149~exp=1701100749~hmac=8f83be5e68751a32a8aa81728743a34d72d930757a108b9673f90e3bad5afeca&w=1380");
+            border-radius: 20px;
+            background-size: cover;
+            margin-top: 40px;
+        }
+        #blogForm label{
+            display: flex;
+            padding: 0px 10px;
+            font-weight: 600;
+            font-size: 20px;
+            color: white;
+            text-shadow: 2px 2px 4px #000000;
+        }
+        #blogForm input{
+            display: flex;
+            width: 100%;
+            padding: 5px 15px;
+            margin-top: 10px;
+            font-size: 15px;
+            box-shadow: 5px 10px 18px #ced0d363;
+            border-radius: 20px;
+            border: 2px solid white;
+            outline: none;
+        }
+        #blogForm button{
+            display: flex;
+            font-size: 20px;
+            border-radius: 20px;
+            outline: none;
+            border: none;
+            padding: 10px 100px;
+            margin: auto;
+            background-color: black;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
     <%- include("nav") %>
-        <section class="bform">
             <form action="/blog/updateblog/:id" method="post" id="blogForm">
                 <label for="title">Title : </label>
                 <input type="text" name="title" id="title" value="<%= udata.title %>"><br><br>
@@ -19,9 +60,9 @@
                 <input type="text" name="category" id="category" value="<%= udata.category %>"><br><br>
                 <label for="image">Image : </label>
                 <input type="url" name="image" id="image" value="<%= udata.image %>"><br><br>
-                <input type="submit" value="Update" class="blogsub" id="add">
+                <button type="submit">UPDATE</button>
             </form>
-        </section>
+        
 </body>
 <script>
     let url = window.location.href.split("/");
