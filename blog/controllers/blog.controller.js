@@ -4,20 +4,6 @@ const fuse = require('fuse.js');
 
 
 const createdata = async (req, res) => {
-    // try {
-    //     let idData = await userdata.findById(req.cookies.id);
-    //     let { title, content, image, category } = req.body;
-    //     let data = await blogdata({
-    //         title, content, image, category, author: idData.username,
-    //     });
-    //     res.cookie("blogId", data.id).send(`blog created by ${idData.username} `);
-    //     console.log(data);
-    // }
-    // catch (error) {
-    //     return res.send({ error: "errors" });
-    //     console.log(error);
-    // }
-
     let datas = await userdata.findById(req.cookies.id);
     let { title, content, image, category } = req.body;
     let data = await blogdata.create({
